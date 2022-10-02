@@ -17,3 +17,26 @@
 
 > if userScore or randScore = 3, game ends 
 */
+
+let validChoice = ['rock','paper','scissor']
+let userChoice, randomChoice, userScore, randomScore
+
+isnotValid = true;
+while(isnotValid){
+    userChoice = prompt("Please type your move: rock, paper, or scissor").toLowerCase();
+    if (validChoice.includes(userChoice)){
+        isnotValid = false
+    }
+    else {
+        alert("Please enter a valid choice of the following: rock, paper, or scissor.")
+    }
+}
+
+function getRandomChoice (){
+    randomChoice = validChoice[Math.floor(Math.random()*validChoice.length)]
+}
+
+function game(){
+
+}
+
