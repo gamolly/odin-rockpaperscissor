@@ -18,7 +18,7 @@
 > if userScore or randScore = 3, game ends 
 */
 
-let validChoice = ['rock', 'paper', 'scissor']
+const validChoice = ['rock', 'paper', 'scissor']
 
 
 function getUserChoice() {
