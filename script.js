@@ -18,25 +18,62 @@
 > if userScore or randScore = 3, game ends 
 */
 
-let validChoice = ['rock','paper','scissor']
-let userChoice, randomChoice, userScore, randomScore
+let validChoice = ['rock', 'paper', 'scissor']
 
-isnotValid = true;
-while(isnotValid){
-    userChoice = prompt("Please type your move: rock, paper, or scissor").toLowerCase();
-    if (validChoice.includes(userChoice)){
-        isnotValid = false
+
+function getUserChoice() {
+    let choice;
+    isnotValid = true;
+    while (isnotValid) {
+        choice = prompt("Please type your move: rock, paper, or scissor").toLowerCase();
+        if (validChoice.includes(choice)) {
+            isnotValid = false
+        }
+        else {
+            alert("Please enter a valid choice of the following: rock, paper, or scissor.")
+        }
     }
-    else {
-        alert("Please enter a valid choice of the following: rock, paper, or scissor.")
-    }
+
+    return choice
 }
 
-function getRandomChoice (){
-    randomChoice = validChoice[Math.floor(Math.random()*validChoice.length)]
+function getRandomChoice() {
+    return validChoice[Math.floor(Math.random() * validChoice.length)]
 }
 
-function game(){
+function game() {
+    let userChoice, randomChoice
 
+    let userScore = 0, randomScore = 0
+
+    while (userScore < 3 && randomScore < 3){
+        userChoice = getUserChoice()
+        randomChoice = getRandomChoice()
+
+        if (userChoice == randomChoice){
+            alert(`It's a draw! Both of you played ${userChoice}!`)
+            alert(`Score remains: You (${userScore}) - Computer (${randomScore})`)
+        }
+        
+        else if(
+            (userChoice == 'paper'&& randomChoice == "scissor") || 
+            (userChoice == 'rock'&& randomChoice == "paper") || 
+            (userChoice == 'scissor'&& randomChoice == "rock")
+        ) {
+            ++randomScore
+            alert(`You lose! ${randomChoice} destroys ${userChoice}!`)
+            alert(`Score is now: You (${userScore}) - Computer (${randomScore})`)
+
+        }
+
+        else{
+            ++userScore
+            alert(`You win! ${userChoice} obliterates ${randomChoice}!`)
+            alert(`Score is now: You (${userScore}) - Computer (${randomScore})`)
+        }
+    }
+
+    if(userScore > randomScore){alert(`Congratulations! You win(${userScore} - ${randomScore})! The entire human existence is safe in your hands.`)} 
+    else{alert(`Pathetic! You lose (${userScore} - ${randomScore})! The human race stands no chance against the machine... thanks a lot >_>`)}
 }
 
